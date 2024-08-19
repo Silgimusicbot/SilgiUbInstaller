@@ -1,4 +1,4 @@
-Userator+="\n⚝ 𝑺𝑰𝑳𝑮𝑰 𝑼𝑺𝑬𝑹𝑩𝑶𝑻 ⚝💻 - AVTOMATIK QURULUM �?"
+Userator+="\n S İ L G İ UB💻 - AVTOMATIK QURULUM �?"
 MESAJ+="\n "
 MESAJ+="\n✅Yeniliklər kanalımız: @silgiubplugin"
 MESAJ+="\n✅Dəstək qrupumuz: @silgiuserbot"
