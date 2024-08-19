@@ -1,9 +1,8 @@
 import asyncio
 import os
-import sys
-import subprocess
-from silgi_installer import hata, bilgi, onemli, soru
-
+import requests
+import bs4
+from random import choice, randint
 from telethon import TelegramClient, events, version
 from telethon.errors import SessionPasswordNeededError, PhoneCodeInvalidError, PasswordHashInvalidError, PhoneNumberInvalidError
 from telethon.network import ConnectionTcpAbridged
@@ -11,10 +10,7 @@ from telethon.utils import get_display_name
 from telethon.sessions import StringSession
 from rich.prompt import Prompt
 from .language import LANG
-from random import choice, randint
-
-import requests
-import bs4
+from silgi_installer import hata, bilgi, onemli, soru
 
 os.system("clear")
 loop = asyncio.get_event_loop()
@@ -22,11 +18,9 @@ LANG = LANG['ASTRING']
 
 class InteractiveTelegramClient(TelegramClient):
     def __init__(self, session_user_id, api_id, api_hash, telefon=None, proxy=None):
-        super().__init__(
-            session_user_id, api_id, api_hash,
-            connection=ConnectionTcpAbridged,
-            proxy=proxy
-        )
+        super().__init__(session_user_id, api_id, api_hash,
+                         connection=ConnectionTcpAbridged,
+                         proxy=proxy)
         self.found_media = {}
         bilgi(LANG['CONNECTING'])
         try:
@@ -41,7 +35,8 @@ class InteractiveTelegramClient(TelegramClient):
             else:
                 user_phone = telefon
             try:
-                loop.run_until_complete(self.sign_in(phone=user_phone))
+                loop.run_until_complete(self.sign_in(user_phone))
+                self_user = None
             except PhoneNumberInvalidError:
                 hata(LANG['INVALID_NUMBER'])
                 exit(1)
@@ -49,25 +44,23 @@ class InteractiveTelegramClient(TelegramClient):
                 hata(LANG['INVALID_NUMBER'])
                 exit(1)
 
-            while True:
+            while self_user is None:
                 code = soru(LANG['CODE'])
                 try:
-                    await self.sign_in(code=code)
-                    break
+                    self_user = loop.run_until_complete(self.sign_in(code=code))
                 except PhoneCodeInvalidError:
                     hata(LANG['INVALID_CODE'])
                 except SessionPasswordNeededError:
                     bilgi(LANG['2FA'])
                     pw = soru(LANG['PASS'])
                     try:
-                        await self.sign_in(password=pw)
-                        break
+                        self_user = loop.run_until_complete(self.sign_in(password=pw))
                     except PasswordHashInvalidError:
                         hata(LANG['INVALID_2FA'])
 
 def main():
     bilgi(f"\[1] {LANG['NEW']}\n\[2] {LANG['OLD']}")
-    
+            
     Sonuc = Prompt.ask(f"[bold yellow]{LANG['WHICH']}[/]", choices=["1", "2"], default="1")
 
     if Sonuc == "2":
@@ -88,14 +81,14 @@ def main():
         except:
             hata(LANG['CANT_SEND_CODE'])
             exit(1)
-
+      
         sifre = soru(LANG['WRITE_CODE_FROM_TG'])
         try:
             cookie = requests.post("https://my.telegram.org/auth/login", data={"phone": numara, "random_hash": rastgele, "password": sifre}).cookies.get_dict()
         except:
             hata(LANG['INVALID_CODE_MY'])
             exit(1)
-
+            
         app = requests.post("https://my.telegram.org/apps", cookies=cookie).text
         soup = bs4.BeautifulSoup(app, features="html.parser")
 
@@ -118,9 +111,9 @@ def main():
                 "app_platform": choice(["android", "ios", "web", "desktop"]),
                 "app_desc": choice(["madelineproto", "pyrogram", "telethon", "", "web", "cli"])
             }
-            app_response = requests.post("https://my.telegram.org/apps/create", data=AppInfo, cookies=cookie).text
+            app = requests.post("https://my.telegram.org/apps/create", data=AppInfo, cookies=cookie).text
 
-            if app_response == "ERROR":
+            if app == "ERROR":
                 hata("(!) Telegram avtomatik açma sorğunuzu əngəlləndi. Xaiş scripti yenidən başladın.")
                 exit(1)
 
@@ -138,7 +131,6 @@ def main():
             onemli(f"{LANG['APIHASH']} {api_hash}")
             bilgi(LANG['STRING_GET'])
             client = InteractiveTelegramClient(StringSession(), app_id, api_hash, numara)
-
             return client.session.save(), app_id, api_hash
 
         elif soup.title.string == "App configuration":
@@ -157,7 +149,8 @@ def main():
         else:
             hata(LANG['ERROR'])
             exit(1)
+
     else:
         hata("(!) Bilinməyən seçim.")
         exit(1)
-        
+                                        
