@@ -1,4 +1,4 @@
-Userator+="\n? ????? ??????? ?? - AVTOMATIK QURULUM �?"
+Userator+="\n? ????? ??????? ?? - AVTOMATIK QURULUM �?"
 MESAJ+="\n "
 MESAJ+="\n✅Yeniliklər kanalımız: @silgiubplugin"
 MESAJ+="\n✅Dəstək qrupumuz: @silgiuserbot"
@@ -36,13 +36,13 @@ echo -e $MESAJ
 echo -e $BOSLUQ
 echo "Faylları yükləyirəm..."
 echo -e $BOSLUQ
-rm -rf SilgiUb?nstaller
+rm -rf SilgiUbInstaller
 git clone https://github.com/Silgimusicbot/SilgiUserbot
 clear
 echo -e $BOSLUK
 echo -e $MESAJ
 echo -e $BOSLUQ
 echo -e $BOSLUQ
-cd SilgiUb?nstaller
+cd SilgiUbInstaller
 pip install -r requirements.txt
 python -m silgi_installer
