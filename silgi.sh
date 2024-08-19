@@ -37,7 +37,7 @@ echo -e $BOSLUQ
 echo "Faylları yükləyirəm..."
 echo -e $BOSLUQ
 rm -rf SilgiUbInstaller
-git clone https://github.com/Silgimusicbot/SilgiUserbot
+git clone https://github.com/Silgimusicbot/SilgiUbInstaller
 clear
 echo -e $BOSLUK
 echo -e $MESAJ
