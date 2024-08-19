@@ -6,13 +6,12 @@ from git import Repo
 from silgi_installer import *
 from .astring import main
 import os
-from telethon import TelegramClient, functions
+from telethon import TelegramClient
 from telethon.sessions import StringSession
 from telethon.tl.functions.channels import EditPhotoRequest, CreateChannelRequest
 from asyncio import get_event_loop
 from .language import LANG, COUNTRY, LANGUAGE, TZ
 from rich.prompt import Prompt, Confirm
-import base64
 
 LANG = LANG['MAIN']
 
@@ -26,7 +25,7 @@ def connect(api):
     return heroku_conn
 
 def createApp(connect):
-    appname = "silgiub" + str(int(time() * 1000))[-4:].replace(".", "") + str(random.randint(0, 500))
+    appname = "silgiub" + str(int(time() * 1000) % 10000) + str(random.randint(0,500))
     try:
         connect.create_app(name=appname, stack_id_or_name='container', region_id_or_name="eu")
     except requests.exceptions.HTTPError:
@@ -91,10 +90,9 @@ if __name__ == "__main__":
     appname = createApp(heroku)
     basarili(LANG['SUCCESS_APP'])
     onemli(LANG['DOWNLOADING'])
-    
     SyperStringKey = "SilgiUserbot"
     GiperStringKey = "Silgimusicbot/"
-    InvalidKey = "http://github.com/"
+    InvalidKey = "http://github.com/" 
     str1 = InvalidKey + GiperStringKey + SyperStringKey
 
     if os.path.isdir("./Userator/"):
@@ -106,61 +104,59 @@ if __name__ == "__main__":
     config = app.config()
 
     onemli(LANG['WRITING_CONFIG'])
-    config.update({
-        'ANTI_SPAMBOT': 'False',
-        'ANTI_SPAMBOT_SHOUT': 'False',
-        'ALIVE_NAME': '',
-        'ALIVE_PIC': '',
-        'ALIVE_ID_USER': '',
-        'SUDO_ID': "",
-        'API_HASH': ahash,
-        'API_KEY': str(aid),
-        'BOTLOG': "False",
-        'BOTLOG_CHATID': "0",
-        'CLEAN_WELCOME': "True",
-        'CONSOLE_LOGGER_VERBOSE': "False",
-        'COUNTRY': COUNTRY,
-        'DEFAULT_BIO': "@silgiuserbot",
-        'GALERI_SURE': "60",
-        'CHROME_DRIVER': "/usr/sbin/chromedriver",
-        'GOOGLE_CHROME_BIN': "/usr/sbin/chromium",
-        'HEROKU_APIKEY': api,
-        'HEROKU_APPNAME': appname,
-        'STRING_SESSION': stri,
-        'HEROKU_MEMEZ': "True",
-        'LOGSPAMMER': "False",
-        'PM_AUTO_BAN': "False",
-        'PM_AUTO_BAN_LIMIT': "4",
-        'TMP_DOWNLOAD_DIRECTORY': "./downloads/",
-        'TZ': TZ,
-        'TZ_NUMBER': "1",
-        'UPSTREAM_REPO_URL': "https://github.com/Silgimusicbot/SilgiUserbot",
-        'WARN_LIMIT': "3",
-        'WARN_MODE': "gmute",
-        'LANGUAGE': LANGUAGE,
-        'TELEGRAPH_SHORT_NAME': "Silgi",
-        "TMP_DOWNLOAD_DIRECTORY": "./DOWNLOADS/"
-    })
+    
+    config['ANTI_SPAMBOT'] = 'False'
+    config['ANTI_SPAMBOT_SHOUT'] = 'False'
+    config['ALIVE_NAME'] = ''
+    config['ALIVE_PIC'] = ''
+    config['ALIVE_ID_USER'] = ''
+    config["SUDO_ID"] = ""
+    config['API_HASH'] = ahash
+    config['API_KEY'] = str(aid)
+    config['BOTLOG'] = "False"
+    config['BOTLOG_CHATID'] = "0"
+    config['CLEAN_WELCOME'] = "True"
+    config['CONSOLE_LOGGER_VERBOSE'] = "False"
+    config['COUNTRY'] = COUNTRY
+    config['DEFAULT_BIO'] = "@silgiuserbot"
+    config['GALERI_SURE'] = "60"
+    config['CHROME_DRIVER'] = "/usr/sbin/chromedriver"
+    config['GOOGLE_CHROME_BIN'] = "/usr/sbin/chromium"
+    config['HEROKU_APIKEY'] = api
+    config['HEROKU_APPNAME'] = appname
+    config['STRING_SESSION'] = stri
+    config['HEROKU_MEMEZ'] = "True"
+    config['LOGSPAMMER'] = "False"
+    config['PM_AUTO_BAN'] = "False"
+    config['PM_AUTO_BAN_LIMIT'] = "4"
+    config['TMP_DOWNLOAD_DIRECTORY'] = "./downloads/"
+    config['TZ'] = TZ
+    config['TZ_NUMBER'] = "1"
+    config['UPSTREAM_REPO_URL'] = "https://github.com/Silgimusicbot/SilgiUserbot"
+    config['WARN_LIMIT'] = "3"
+    config['WARN_MODE'] = "gmute"
+    config['LANGUAGE'] = LANGUAGE
+    config['TELEGRAPH_SHORT_NAME'] = "Silgi"
+    config["TMP_DOWNLOAD_DIRECTORY"] = "./DOWNLOADS/"
 
     basarili(LANG['SUCCESS_CONFIG'])
     bilgi(LANG['OPENING_DYNO'])
     
-    formation = app.process_formation()
-    if formation and "worker" in formation:
-        formation["worker"].scale(1)
-    else:
+    try:
+        app.process_formation()["worker"].scale(1)
+    except:
         hata(LANG['ERROR_DYNO'])
         exit(1)
-        
+
     basarili(LANG['OPENED_DYNO'])
     basarili(LANG['SUCCESS_DEPLOY'])
     tamamlandi(time() - baslangic)
 
     Sonra = Confirm.ask(f"[bold yellow]{LANG['AFTERDEPLOY']}[/]", default=True)
-    if Sonra == True:
+    if Sonra:
         BotLog = False
         Cevap = ""
-        while not Cevap == "3":
+        while Cevap != "3":
             if Cevap == "1":
                 bilgi(LANG['OPENING_BOTLOG'])
                 KanalId = loop.run_until_complete(botlog(stri, aid, ahash))
@@ -174,9 +170,8 @@ if __name__ == "__main__":
                     basarili(LANG['SUCCESS_LOG'])
                 else:
                     hata(LANG['NEED_BOTLOG'])
-
-            bilgi(f"\[1] {LANG['BOTLOG']}\n[2] {LANG['NO_LOG']}\n\[3] {LANG['CLOSE']}")
-            
+         
+            bilgi(f"\[1] {LANG['BOTLOG']}\n\[2] {LANG['NO_LOG']}\n\[3] {LANG['CLOSE']}")
             Cevap = Prompt.ask(f"[bold yellow]{LANG['WHAT_YOU_WANT']}[/]", choices=["1", "2", "3"], default="3")
             basarili(LANG['SEEYOU'])
     
