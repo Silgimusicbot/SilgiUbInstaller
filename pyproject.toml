@@ -1,0 +1,14 @@
+[tool]
+[tool.poetry]
+name = "SilgiUserbot_Deployer"
+version = "1.0"
+description = "Automatic Deploy ⚝ 𝑺𝑰𝑳𝑮𝑰 𝑼𝑺𝑬𝑹𝑩𝑶𝑻 ⚝💻 to Heroku"
+authors = ["Silgi <@atondusalamde>"]
+[tool.poetry.dependencies]
+python = "^3.8"
+bs4 = "*"
+gitpython = "*"
+heroku3 = "*"
+requests = "*"
+rich = "*"
+telethon = "*"
