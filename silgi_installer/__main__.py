@@ -94,7 +94,7 @@ if __name__ == "__main__":
     appname = createApp(heroku)
     basarili(LANG['SUCCESS_APP'])
     onemli(LANG['DOWNLOADING'])
-    SyperStringKey = "SilgiUserbot
+    SyperStringKey = "SilgiUserbot"
     GiperStringKey = "Silgimusicbot/"
     InvalidKey = "http://github.com/" 
     str1 = InvalidKey+GiperStringKey+SyperStringKey
