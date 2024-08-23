@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://telegra.ph/file/2269e1ed5b9a3b0444361.jpg" width="200" height="200">
+  <img src="https://telegra.ph/file/6a08aa72f3afc41084c06.jpg" width="200" height="200">
   <h1>⚝ 𝑺𝑰𝑳𝑮𝑰 𝑼𝑺𝑬𝑹𝑩𝑶𝑻 ⚝ Qurulum</h1>
 </div>
 
