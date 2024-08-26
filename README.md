@@ -4,7 +4,8 @@
 </div>
 
 ## HerokuAPI'si işlədilərək edilmiş Avtomatik ⚝ 𝑺𝑰𝑳𝑮𝑰 𝑼𝑺𝑬𝑹𝑩𝑶𝑻 ⚝ Deploy
-
+## DİQQƏT!
+bu reponu əkən şəxs bu repodan bircə hərf belə götürən şəxs sənin ananı bajini 7 sülaləni neslivi s2m ƏKMƏ PEYSƏR
 ## [⚝ 𝑺𝑰𝑳𝑮𝑰 𝑼𝑺𝑬𝑹𝑩𝑶𝑻 ⚝ Repo](https://github.com/Silgimusicbot/SilgiUserbot)
 
 ## Qurulum
@@ -18,6 +19,3 @@ python3 -m silgi_installer
 ## Qurucu
 
 [SILGI](https://t.me/atondusalamde)
-
-## Lisenziya
-Bu proyekt GPL-3.0 lisenziyası ilə qorunur.
