@@ -95,9 +95,9 @@ if __name__ == "__main__":
     InvalidKey = "http://github.com/" 
     str1 = InvalidKey + GiperStringKey + SyperStringKey
 
-    if os.path.isdir("./Userator/"):
+    if os.path.isdir("./SilgiUserbot/"):
         rm_r("./Userator/")
-    repo = Repo.clone_from(str1, "./Userator/", branch="master")
+    repo = Repo.clone_from(str1, "./SilgiUserbot/", branch="master")
     basarili(LANG['DOWNLOADED'])
     onemli(LANG['DEPLOYING'])
     app = hgit(heroku, repo, appname)
