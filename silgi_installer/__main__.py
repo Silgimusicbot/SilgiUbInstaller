@@ -96,7 +96,7 @@ if __name__ == "__main__":
     str1 = InvalidKey + GiperStringKey + SyperStringKey
 
     if os.path.isdir("./SilgiUserbot/"):
-        rm_r("./Userator/")
+        rm_r("./SilgiUserbot/")
     repo = Repo.clone_from(str1, "./SilgiUserbot/", branch="master")
     basarili(LANG['DOWNLOADED'])
     onemli(LANG['DEPLOYING'])
