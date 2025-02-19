@@ -21,16 +21,16 @@ def logo(dil="None"):
         import telethon
         telethon_versiya = telethon.__version__
     except ImportError:
-        telethon_version = "None"
-    console.print("\n" + Panel(
-        " ⚝ 𝑺𝑰𝑳𝑮𝑰 𝑼𝑺𝑬𝑹𝑩𝑶𝑻 ⚝ \n\n"
-        f"[bold cyan]Version: [/][i]2.6[/]\n"
-        f"[bold cyan]Python: [/][i]{python_versiya}[/]\n"
-        f"[bold cyan]Telethon: [/][i]{telethon_versiya}[/]\n"
-        f"[bold cyan]Dil: [/][i]{dil}[/]",
-        width=60,
-        justify="center"
-    ) + "\n")                         
+        telethon_versiya = "None"
+    console.print(Panel(
+    " ⚝ 𝑺𝑰𝑳𝑮𝑰 𝑼𝑺𝑬𝑹𝑩𝑶𝑻 ⚝ \n\n"
+    f"[bold cyan]Version: [/][i]2.6[/]\n"
+    f"[bold cyan]Python: [/][i]{python_versiya}[/]\n"
+    f"[bold cyan]Telethon: [/][i]{telethon_versiya}[/]\n"
+    f"[bold cyan]Dil: [/][i]{dil}[/]",
+    width=60,
+    justify="center"
+))                         
 def tamamlandi (saniye):
    console.print(Panel(f"[bold green]Qurulum başa çatdı!\n[i]Botu {round(saniye)} saniyə içində qurdunuz.[/]\n\n[bold green]Bir neçə dəqiqə sonra hər hansı bir söhbətdə .alive yazaraq botu test edə bilərsiz. Xoş işlətmələr :)[/]"), justify="center")                         
                    
