@@ -29,8 +29,8 @@ def logo(dil="None"):
     f"[bold cyan]Telethon: [/][i]{telethon_versiya}[/]\n"
     f"[bold cyan]Dil: [/][i]{dil}[/]",
     width=60,
-    justify="center"
-))                         
+    
+), justify="center")                         
 def tamamlandi (saniye):
    console.print(Panel(f"[bold green]Qurulum başa çatdı!\n[i]Botu {round(saniye)} saniyə içində qurdunuz.[/]\n\n[bold green]Bir neçə dəqiqə sonra hər hansı bir söhbətdə .alive yazaraq botu test edə bilərsiz. Xoş işlətmələr :)[/]"), justify="center")                         
                    
