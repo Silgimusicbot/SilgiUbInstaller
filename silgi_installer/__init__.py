@@ -23,7 +23,7 @@ def logo(dil="None"):
     except ImportError:
         telethon_versiya = "None"
     console.print(Panel(
-        f"⚝ [bold #00008B]𝑺𝑰𝑳𝑮𝑰[/][bold #E30B17]𝑼𝑺𝑬𝑹[/][bold #009639]𝑩𝑶𝑻[/] ⚝\n\n"
+        f"⚝ [bold #0049B2]𝑺𝑰𝑳𝑮𝑰[/][bold #E30B17]𝑼𝑺𝑬𝑹[/][bold #009639]𝑩𝑶𝑻[/] ⚝\n\n"
         f"[bold cyan]Version: [/][i]2.6[/]\n"
         f"[bold cyan]Python: [/][i]{python_versiya}[/]\n"
         f"[bold cyan]Telethon: [/][i]{telethon_versiya}[/]\n"
