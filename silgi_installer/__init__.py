@@ -21,8 +21,10 @@ def logo(dil="None"):
         import telethon
         telethon_versiya = telethon.__version__
     except ImportError:
-    bayraq = "[blue]████████████████████[/]\n[red]████████[/][bold white]☪︎[/][red]██████[/]\n[green]████████████████████[/]"
         telethon_versiya = "None"
+    
+    
+    bayraq = "[blue]████████████████████[/]\n[red]████████[/][bold white]☪︎[/][red]██████[/]\n[green]████████████████████[/]"
     console.print(Panel(
         f"{bayraq}\n"
         f"⚝ [bold #0049B2]𝑺𝑰𝑳𝑮𝑰[/][bold #E30B17]𝑼𝑺𝑬𝑹[/][bold #009639]𝑩𝑶𝑻[/] ⚝\n\n"
@@ -31,7 +33,6 @@ def logo(dil="None"):
         f"[bold cyan]Telethon: [/][i]{telethon_versiya}[/]\n"
         f"[bold cyan]Dil: [/][i]{dil}[/]",
         width=60,
-        
     ), justify="center")
                         
 def tamamlandi (saniye):
