@@ -21,8 +21,10 @@ def logo(dil="None"):
         import telethon
         telethon_versiya = telethon.__version__
     except ImportError:
+    bayraq = "[blue]████████████████████[/]\n[red]████████[/][bold white]☪︎[/][red]██████[/]\n[green]████████████████████[/]"
         telethon_versiya = "None"
     console.print(Panel(
+        f"{bayraq}\n"
         f"⚝ [bold #0049B2]𝑺𝑰𝑳𝑮𝑰[/][bold #E30B17]𝑼𝑺𝑬𝑹[/][bold #009639]𝑩𝑶𝑻[/] ⚝\n\n"
         f"[bold cyan]Version: [/][i]2.6[/]\n"
         f"[bold cyan]Python: [/][i]{python_versiya}[/]\n"
